@@ -19,7 +19,8 @@ class PositionRequester extends RequesterDecorator<JSONObject, Position, Excepti
             @NonNull final JSONObject response,
             @NonNull final ResponseListener<Position, Exception> listener
     ) {
-        final double latitude, longitude, timestamp;
+        final double latitude, longitude;
+        final int timestamp;
 
         try {
             timestamp = response.getInt("timestamp");

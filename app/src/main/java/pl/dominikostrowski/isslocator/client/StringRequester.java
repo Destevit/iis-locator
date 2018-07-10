@@ -29,8 +29,6 @@ class StringRequester extends RequesterDecorator<InputStream, String, Exception>
             while ((line = reader.readLine()) != null) {
                 builder.append(line);
             }
-
-            listener.onSuccess(builder.toString());
         } catch (final IOException exception) {
             listener.onFailure(exception);
             return;

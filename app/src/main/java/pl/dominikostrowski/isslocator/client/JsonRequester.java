@@ -21,7 +21,6 @@ public class JsonRequester extends RequesterDecorator<String, JSONObject, Except
 
         try {
             rootObject = new JSONObject(response);
-            listener.onSuccess(rootObject);
         } catch (final JSONException exception) {
             listener.onFailure(exception);
             return;

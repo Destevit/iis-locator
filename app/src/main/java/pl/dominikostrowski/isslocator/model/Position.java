@@ -6,9 +6,9 @@ public class Position {
 
     private final double latitude;
     private final double longitude;
-    private final double timestamp;
+    private final int timestamp;
 
-    public Position(double latitude, double longitude, double timestamp) {
+    public Position(double latitude, double longitude, int timestamp) {
         this.latitude = latitude;
         this.longitude = longitude;
         this.timestamp = timestamp;
@@ -22,7 +22,7 @@ public class Position {
         return longitude;
     }
 
-    public double getTimestamp() {
+    public int getTimestamp() {
         return timestamp;
     }
 
@@ -33,7 +33,7 @@ public class Position {
         Position position = (Position) o;
         return Double.compare(position.latitude, latitude) == 0 &&
                 Double.compare(position.longitude, longitude) == 0 &&
-                Double.compare(position.timestamp, timestamp) == 0;
+                Integer.compare(position.timestamp, timestamp) == 0;
     }
 
     @Override
