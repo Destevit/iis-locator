@@ -3,4 +3,9 @@
     <string name="mapbox_access_token">pk.eyJ1IjoiZGVzdGV2aXQiLCJhIjoiY2pqZGZ5Nnh2NDA5aTNrcWc2ZThuc2MwNiJ9.QO4vdw5om3oCcYMlAT8b1A</string>
     <string name="last_update">"Last update: "</string>
     <string name="never">never</string>
+    <plurals name="astronautsNumber">
+        <item quantity="zero">There are no people on the ISS</item>
+        <item quantity="one">There is %d person on the ISS</item>
+        <item quantity="other">There are %d people on the ISS</item>
+    </plurals>
 </resources>
