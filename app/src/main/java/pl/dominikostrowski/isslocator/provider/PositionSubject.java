@@ -18,6 +18,8 @@ class PositionSubject extends SubjectDecorator<Position, Exception> {
 
     private final long interval;
 
+    private boolean retrySet = false;
+
     PositionSubject(
             @NonNull final Subject<Position, Exception> subject,
             @NonNull final Client client,
@@ -32,7 +34,7 @@ class PositionSubject extends SubjectDecorator<Position, Exception> {
     public void addObserver(@NonNull Observer<Position, Exception> observer) {
         super.addObserver(observer);
 
-        if (getObservers().size() < 2) {
+        if (observersCount() < 2) {
             requestPosition();
         }
     }
@@ -55,17 +57,25 @@ class PositionSubject extends SubjectDecorator<Position, Exception> {
     public void onNext(Position object) {
         super.onNext(object);
 
-        if (getObservers().size() > 0) {
-            new Handler().postDelayed(this::requestPosition, interval);
-        }
+        setRetry();
     }
 
     @Override
     public void onError(Exception error) {
         super.onError(error);
 
-        if (getObservers().size() > 0) {
-            new Handler().postDelayed(this::requestPosition, interval);
+        setRetry();
+    }
+
+    private void setRetry() {
+        if (observersCount() > 0 && !retrySet) {
+            retrySet = true;
+            new Handler().postDelayed(this::retry, interval);
         }
+    }
+
+    private void retry() {
+        retrySet = false;
+        requestPosition();
     }
 }
